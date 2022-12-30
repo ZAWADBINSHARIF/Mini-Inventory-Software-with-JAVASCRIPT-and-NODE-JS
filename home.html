@@ -19,13 +19,55 @@
     <title>Home</title>
 </head>
 <body>
+
+
+       <!-- ======================== Start Nav Bar =========================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="home.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="addItem.html"
+                >Add Item</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="sellItem.html"
+                >Sell Item</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="">Setting</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- ======================== Exit Start Nav Bar =========================== -->
+
+
+
     <div class="container-fluid d-flex justify-content-center align-items-center text-center">
         <div class="button-section">
             <a href="/addItem.html" type="button" class="btn btn-success home-btn">
                 <i class="fa fa-plus-circle fa-2xl py-5" aria-hidden="true"></i>
                 <p>Add Item</p>
             </a>
-            <a type="button" class="btn btn-success home-btn">
+            <a href="sellItem.html" type="button" class="btn btn-success home-btn">
                 <i class="fa fa fa-shopping-bag fa-2xl py-5" aria-hidden="true"></i>
                 <p>Sell Item</p>
             </a>
@@ -35,5 +77,8 @@
             </a>
         </div>
     </div>
+</body>
+</html>
+
 </body>
 </html>
