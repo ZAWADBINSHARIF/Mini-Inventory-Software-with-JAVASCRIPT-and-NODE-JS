@@ -26,6 +26,10 @@ thead>tr>th{
     text-align: center;
 }
 
+.table-container{
+    overflow-x:scroll;
+}
+
 .nav-link{
     font-size: 1.1rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;

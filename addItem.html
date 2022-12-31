@@ -30,6 +30,9 @@
     <!-- CSS File  -->
     <link rel="stylesheet" href="./styles/style.css" />
 
+    <!-- main JavaScript file  -->
+    <script src="./js/main.js" defer></script>
+
     <title>Add Item</title>
   </head>
   <body>
@@ -197,7 +200,7 @@
     <!-- ======================== Exit Start Nav Bar =========================== -->
 
     <div
-      class="container d-flex justify-content-center flex-column align-items-center main-container"
+      class="container d-flex justify-content-center flex-column align-items-center"
     >
       <button type="button" class="btn addItem-btn my-5">
         <i
@@ -207,68 +210,79 @@
         ></i>
       </button>
       <div class="showItemContainer">
-
+        <!-- ================================= start search bar ============================= -->
         <nav class="navbar navbar-light bg-light my-3">
-        <div class="container-fluid justify-content-between">
-          <h1 class="text-capitalize">Add Item</h1>
-          <form class="d-flex">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Product Name"
-              aria-label="Search"
-              name="searchProductName"
-            />
-            <button class="btn btn-outline-primary" type="submit">
-              Search
-            </button>
-          </form>
-        </div>
-      </nav>
+          <div class="container-fluid justify-content-between">
+            <h1 class="text-capitalize">Add Item</h1>
+            <form class="d-flex">
+              <input
+                id="searchProductName"
+                class="form-control me-2"
+                type="search"
+                placeholder="Product Name"
+                aria-label="Search"
+                name="searchProductName"
+                onkeyup="searchActionBar()"
+              />
+              <button
+                class="btn btn-outline-primary"
+                type="submit"
+                onclick="searchActionBar()"
+              >
+                Search
+              </button>
+            </form>
+          </div>
+        </nav>
+
+        <!-- ================================= Exit search bar ============================= -->
 
         <!-- ============================== Start Product table ================================== -->
 
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Picture</th>
-              <th scope="col">Product Name</th>
-              <th scope="col">Brand</th>
-              <th scope="col">Description</th>
-              <th scope="col">Price</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="td-img">
-                <img
-                  data-bs-toggle="modal"
-                  data-bs-target="#product-img-viewer-modal"
-                  src="./img/Picture.jpeg"
-                  class="img-thumbnail img-fluid product-img"
-                  alt="..."
-                />
-              </td>
-              <td>Chair</td>
-              <td>ARFL</td>
-              <td class="td-descrip">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
-                maxime sed deleniti, saepe repudiandae odit voluptas sunt quos
-                cupiditate nostrum
-              </td>
-              <td>99Tk</td>
-              <td class="text-center edit-item">
-                <i
-                  class="fa-solid fa-pen-to-square fa-2xl btn-update"
-                  data-bs-toggle="modal"
-                  data-bs-target="#edit-product"
-                ></i>
-                <i class="fa-solid fa-trash fa-2xl btn-delete"></i>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-container">
+          <table id="all-products-table" class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Picture</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-img">
+                  <img
+                    data-bs-toggle="modal"
+                    data-bs-target="#product-img-viewer-modal"
+                    src="./Img/Picture.jpeg"
+                    class="img-thumbnail img-fluid product-img"
+                    alt="..."
+                  />
+                </td>
+                <td>Chair</td>
+                <td>ARFL</td>
+                <td class="td-descrip">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
+                  maxime sed deleniti, saepe repudiandae odit voluptas sunt quos
+                  cupiditate nostrum
+                </td>
+                <td>99Tk</td>
+                <td class="text-center edit-item">
+                  <i
+                    class="fa-solid fa-pen-to-square fa-2xl btn-update"
+                    data-bs-toggle="modal"
+                    data-bs-target="#edit-product"
+                  ></i>
+                  <i class="fa-solid fa-trash fa-2xl btn-delete"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <!-- ============================== End Product table ================================== -->
       </div>
     </div>

@@ -30,6 +30,9 @@
     <!-- CSS File  -->
     <link rel="stylesheet" href="./styles/style.css" />
 
+    <!-- main JavaScript file  -->
+    <script src="./js/main.js" defer></script>
+
     <title>Home</title>
   </head>
   <body>
@@ -106,13 +109,19 @@
           <h1 class="text-capitalize">Sell Item</h1>
           <form class="d-flex">
             <input
+              id="searchProductName"
               class="form-control me-2"
               type="search"
               placeholder="Product Name"
               aria-label="Search"
               name="searchProductName"
+              onkeyup="searchActionBar()"
             />
-            <button class="btn btn-outline-primary" type="submit">
+            <button
+              class="btn btn-outline-primary"
+              type="submit"
+              onclick="searchActionBar()"
+            >
               Search
             </button>
           </form>
@@ -123,43 +132,98 @@
 
       <!-- ============================== Start Product table ================================== -->
 
-      <table class="table table-striped my-2">
-        <thead>
-          <tr>
-            <th scope="col">Picture</th>
-            <th scope="col">Product Name</th>
-            <th scope="col">Brand</th>
-            <th scope="col">Description</th>
-            <th scope="col">Price</th>
-            <th scope="col">Product quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="td-img">
-              <img
-                data-bs-toggle="modal"
-                data-bs-target="#product-img-viewer-modal"
-                src="./img/Picture.jpeg"
-                class="img-thumbnail img-fluid product-img"
-                alt="..."
-              />
-            </td>
-            <td>Chair</td>
-            <td>ARFL</td>
-            <td class="td-descrip">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
-              maxime sed deleniti, saepe repudiandae odit voluptas sunt quos
-              cupiditate nostrum
-            </td>
-            <td>99Tk</td>
-            <td class="text-center td-product-quantity">
-              <input type="number" name="product_quantity" value="0" />
-              <div class="error product_quantity">Invalid Product Quantity</div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-container">
+        <table id="all-products-table" class="table table-striped my-2">
+          <thead>
+            <tr>
+              <th scope="col">Picture</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Brand</th>
+              <th scope="col">Description</th>
+              <th scope="col">Price</th>
+              <th scope="col">Product quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-img">
+                <img
+                  data-bs-toggle="modal"
+                  data-bs-target="#product-img-viewer-modal"
+                  src="./Img/Picture.jpeg"
+                  class="img-thumbnail img-fluid product-img"
+                  alt="..."
+                />
+              </td>
+              <td>Television</td>
+              <td>ARFL</td>
+              <td class="td-descrip">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
+                maxime sed deleniti, saepe repudiandae odit voluptas sunt quos
+                cupiditate nostrum
+              </td>
+              <td>99Tk</td>
+              <td class="text-center td-product-quantity">
+                <input type="number" name="product_quantity" value="0" />
+                <div class="error product_quantity">
+                  Invalid Product Quantity
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="td-img">
+                <img
+                  data-bs-toggle="modal"
+                  data-bs-target="#product-img-viewer-modal"
+                  src="./Img/Picture.jpeg"
+                  class="img-thumbnail img-fluid product-img"
+                  alt="..."
+                />
+              </td>
+              <td>computer</td>
+              <td>ARFL</td>
+              <td class="td-descrip">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
+                maxime sed deleniti, saepe repudiandae odit voluptas sunt quos
+                cupiditate nostrum
+              </td>
+              <td>99Tk</td>
+              <td class="text-center td-product-quantity">
+                <input type="number" name="product_quantity" value="0" />
+                <div class="error product_quantity">
+                  Invalid Product Quantity
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="td-img">
+                <img
+                  data-bs-toggle="modal"
+                  data-bs-target="#product-img-viewer-modal"
+                  src="./Img/Picture.jpeg"
+                  class="img-thumbnail img-fluid product-img"
+                  alt="..."
+                />
+              </td>
+              <td>Chair</td>
+              <td>ARFL</td>
+              <td class="td-descrip">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
+                maxime sed deleniti, saepe repudiandae odit voluptas sunt quos
+                cupiditate nostrum
+              </td>
+              <td>99Tk</td>
+              <td class="text-center td-product-quantity">
+                <input type="number" name="product_quantity" value="0" />
+                <div class="error product_quantity">
+                  Invalid Product Quantity
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <!-- ============================== End Product table ================================== -->
     </div>
 
