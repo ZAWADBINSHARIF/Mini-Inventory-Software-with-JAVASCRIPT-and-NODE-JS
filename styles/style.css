@@ -27,7 +27,7 @@ thead>tr>th{
 }
 
 .table-container{
-    overflow-x:scroll;
+    overflow-x:scroll!important;
 }
 
 .nav-link{
