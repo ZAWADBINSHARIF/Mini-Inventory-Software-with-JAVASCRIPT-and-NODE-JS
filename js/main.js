@@ -1,3 +1,6 @@
+const searchBtnAction = document.querySelector('#search-btn')
+
+
 function searchActionBar() {
     const searchBarValue = document.querySelector('#searchProductName').value.toUpperCase()
     const all_products_table_tbody = document.querySelector('#all-products-table').querySelector('tbody')
@@ -20,3 +23,8 @@ function searchActionBar() {
     }
 
 }
+
+searchBtnAction.addEventListener('click', event => {
+    event.preventDefault();
+    searchActionBar();
+})
