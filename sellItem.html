@@ -152,6 +152,34 @@
           ></button>
         </div>
         <div class="offcanvas-body">
+          <!-- ======================= start customer details form ========================== -->
+
+          <form class="mb-3">
+            <label>Customer Name</label>
+            <input
+              type="text"
+              class="form-control my-2"
+              placeholder="Customer Name"
+              name="customer_name"
+            />
+            <label>Customer Address</label>
+            <input
+              type="text"
+              class="form-control my-2"
+              placeholder="Customer Address"
+              name="customer_address"
+            />
+            <label>Customer Number</label>
+            <input
+              type="text"
+              class="form-control my-2"
+              placeholder="+88017XXXXXXXX"
+              name="customer_number"
+            />
+          </form>
+
+          <!-- ======================= end customer details form ========================== -->
+
           <div class="d-flex justify-content-end">
             <button id="cart-invoice-btn" type="button" class="btn btn-primary">
               Download Invoice
@@ -180,6 +208,40 @@
               aria-label="Close"
             ></button>
           </div>
+
+          <!-- ==================== Start Seleted Product Table ========================== -->
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Chair</td>
+                <td>3</td>
+                <td>99Tk</td>
+                <td>999Tk</td>
+              </tr>
+              <tr>
+                <td>Chair</td>
+                <td>3</td>
+                <td>99Tk</td>
+                <td>999Tk</td>
+              </tr>
+              <tr>
+                <td colspan="3">💰</td>
+                <td>1998Tk</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- ==================== End Seleted Product Table ========================== -->
+
           <div class="offcanvas-body">
             <div class="d-flex justify-content-end">
               <button
