@@ -93,12 +93,12 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="sellItem.html"
-                >Sell Item</a
+              <a class="nav-link" aria-current="page" href="saleItem.html"
+                >Sale Item</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="">Setting</a>
+              <a class="nav-link" aria-current="page" href="setting.html">Setting</a>
             </li>
           </ul>
         </div>
@@ -110,7 +110,7 @@
 
       <nav class="navbar navbar-light bg-light my-3">
         <div class="container-fluid justify-content-between">
-          <h1 class="text-capitalize">Sell Item</h1>
+          <h1 class="text-capitalize">Sale Item</h1>
           <form class="d-flex">
             <input
               id="searchProductName"
@@ -180,7 +180,16 @@
 
           <!-- ======================= end customer details form ========================== -->
 
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-between">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#product-cart"
+              aria-controls="offcanvasRight"
+            >
+              Back
+            </button>
             <button id="cart-invoice-btn" type="button" class="btn btn-primary">
               Download Invoice
             </button>
@@ -190,7 +199,7 @@
 
       <!-- =============================== end Customer Details Cart Viewer ======================== -->
 
-      <!-- ================================ Start Cart View for show seleted product ============================ -->
+      <!-- ================================ Start Cart View for show selected product ============================ -->
 
       <div class="cart-view d-flex justify-content-end">
         <div
@@ -200,7 +209,7 @@
           aria-labelledby="offcanvasRightLabel"
         >
           <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel">Seleted Product Cart</h5>
+            <h5 id="offcanvasRightLabel">Selected Product Cart</h5>
             <button
               type="button"
               class="btn-close text-reset"
@@ -209,7 +218,7 @@
             ></button>
           </div>
 
-          <!-- ==================== Start Seleted Product Table ========================== -->
+          <!-- ==================== Start Selected Product Table ========================== -->
 
           <table class="table">
             <thead>
@@ -240,7 +249,7 @@
             </tbody>
           </table>
 
-          <!-- ==================== End Seleted Product Table ========================== -->
+          <!-- ==================== End Selected Product Table ========================== -->
 
           <div class="offcanvas-body">
             <div class="d-flex justify-content-end">
@@ -269,7 +278,7 @@
         </button>
       </div>
 
-      <!-- ================================ End Cart View for show seleted product ============================ -->
+      <!-- ================================ End Cart View for show selected product ============================ -->
 
       <!-- ============================== Start Product table ================================== -->
 
@@ -318,7 +327,7 @@
       <!-- ============================== End Product table ================================== -->
     </div>
 
-    <!-- JavaScript File sell item  -->
-    <script src="./js/sell_item.js"></script>
+    <!-- JavaScript File sale item  -->
+    <script src="./js/sale_item.js"></script>
   </body>
 </html>
