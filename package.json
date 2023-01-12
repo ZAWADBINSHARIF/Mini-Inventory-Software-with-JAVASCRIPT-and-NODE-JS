@@ -1,0 +1,37 @@
+{
+  "name": "mini-inventory-web-software",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js -e js,json,ejs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZAWADBINSHARIF/Mini-Inventory-Software-with-JAVASCRIPT-and-NODE-JS.git"
+  },
+  "author": "ZAWAD BIN SHARIF",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZAWADBINSHARIF/Mini-Inventory-Software-with-JAVASCRIPT-and-NODE-JS/issues"
+  },
+  "homepage": "https://github.com/ZAWADBINSHARIF/Mini-Inventory-Software-with-JAVASCRIPT-and-NODE-JS#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "date-fns": "^2.29.3",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.2",
+    "http-errors": "^2.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.8.3",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

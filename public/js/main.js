@@ -27,4 +27,4 @@ function searchActionBar() {
 searchBtnAction.addEventListener('click', event => {
     event.preventDefault();
     searchActionBar();
-})
+});
