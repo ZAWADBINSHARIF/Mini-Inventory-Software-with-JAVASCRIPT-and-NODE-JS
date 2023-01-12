@@ -9,8 +9,9 @@ const path = require('path');
 const dbConnect = require('./config/dbConnection.js');
 const indexRoute = require('./routers/indexRoute');
 const saleItemRoute = require('./routers/saleItemRoute');
-const getAddItemRouter = require('./routers/addItemRoute');
+const allProductRouter = require('./routers/allProductRoute');
 const settingRouter = require('./routers/settingRoute');
+const { notFoundHandler } = require('./middlewares/common/errorHandle.js');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -35,9 +36,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Router setup
 app.use('/', indexRoute);
-app.use('/addItem', getAddItemRouter);
+app.use('/all-product', allProductRouter);
 app.use('/saleItem', saleItemRoute);
 app.use('/setting', settingRouter);
+
+// 404 page not found handler
+app.use(notFoundHandler);
 
 mongoose.connection.once('open', () => {
 
