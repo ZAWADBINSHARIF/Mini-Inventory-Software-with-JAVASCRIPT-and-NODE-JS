@@ -1,11 +1,11 @@
 require('dotenv').config();
-// internal import
+// external import
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 
-// external import
+// internal import
 const dbConnect = require('./config/dbConnection.js');
 const indexRoute = require('./routers/indexRoute');
 const saleItemRoute = require('./routers/saleItemRoute');

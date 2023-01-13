@@ -1,7 +1,7 @@
-// internal import
+// external import
 const express = require('express');
 
-// enternal import
+// internal import
 const { getSetting } = require('../controllers/settingController');
 const decorateHtml = require('../middlewares/common/decorateHtml');
 

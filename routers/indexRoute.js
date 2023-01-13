@@ -1,7 +1,7 @@
-// internal import
+// external import
 const express = require('express');
 
-// external import
+// internal import
 const { getIndex } = require('../controllers/indexController');
 const decorateHtml = require('../middlewares/common/decorateHtml');
 

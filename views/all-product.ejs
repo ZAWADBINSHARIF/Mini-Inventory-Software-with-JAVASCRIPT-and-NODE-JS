@@ -3,44 +3,18 @@
     <!-- ======================== Exit Start Nav Bar =========================== -->
 
     <!-- ====================Start Add product Modal Dialuge ===================================== -->
-    <%- include('partials/modals/add-product-modal'); %>
+    <%- include('partials/modals/add-edit-modals/add-product-modal'); %>
     <!-- ==============Exit Add product Modal Dialuge =============================== -->
     
     <!-- ====================Start Edit Item Modal Dialuge ===================================== -->
-    <%- include('partials/modals/edit-product-modal'); %>
+    <%- include('partials/modals/add-edit-modals/edit-product-modal'); %>
     <!-- ==============Exit Edit product Modal Dialuge =============================== -->
 
-    <!-- ================================= Start Product Image Viwer Modal ================================= -->
+    <!-- ================================= Start Product Image Viewer Modal ================================= -->
 
-    <div
-      class="modal fade"
-      id="product-img-viewer-modal"
-      tabindex="-1"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Product Image</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <img
-              src="./Img/Picture.jpeg"
-              class="img-fluid rounded-top product-img-size-view"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+    <%- include('partials/modals/img-modal/img-viewer-modal'); %> 
 
-    <!-- ================================= Exit Product Image Viwer Modal ================================= -->
+    <!-- ================================= Exit Product Image Viewer Modal ================================= -->
 
     <!-- ========================= start add button ====================== -->
     <div
