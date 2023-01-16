@@ -87,8 +87,13 @@ thead>tr>th{
     color: rgb(0, 172, 0);
 }
 
-.error{
-    color: red;
+input.error{
+    outline: 1px solid red;
+}
+
+p.error{
+   display: 'none';
+   color: red; 
 }
 
 .setting-ul>li{

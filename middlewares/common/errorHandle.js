@@ -1,11 +1,9 @@
 // external import
-const createHttpError = require("http-errors");
+// const createHttpError = require("http-errors");
 
 function notFoundHandler(req, res, next) {
-    res.send('<h1>Page Not Found</h1>')
-    next(createHttpError(404, 'Page Not Found'))
+    res.send('<h1>Page Not Found 🥱. Go back to <a href="/">Home Page</a> 😴.</h1>');
 }
-
 module.exports = {
     notFoundHandler
 }

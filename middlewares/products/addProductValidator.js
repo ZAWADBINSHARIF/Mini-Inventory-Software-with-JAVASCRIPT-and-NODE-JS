@@ -15,7 +15,8 @@ const productInputValidation = [
         .custom(async value => {
             try {
                 const foundProduct = await Product.findOne({ productName: value }).exec();
-                if (foundProduct) throw createHttpError('Product name already is used');
+                if (foundProduct)
+                    throw createHttpError('Product name already is used');
             } catch (error) {
                 throw createHttpError(error.message);
             }
@@ -28,17 +29,17 @@ const productInputValidation = [
         .trim(),
     check('price')
         .isLength({ min: 1 })
+        .withMessage('Please input value')
         .isNumeric()
         .withMessage('Please enter nummeric value')
-        .custom(value => {
-            if (value < 0) {
-                createHttpError('Please enter 0 or greater than 0')
-            }
-        })
         .trim()
+        .custom(async value => {
+            if (value < 0)
+                throw await createHttpError('Please input 0 or greater than 0 value');
+    })
 ];
 
-const userValidationHandler = async (req, res, next) => {
+const addProductValidationHandler = (req, res, next) => {
     const errors = validationResult(req);
     const mappedErrors = errors.mapped();
 
@@ -47,9 +48,9 @@ const userValidationHandler = async (req, res, next) => {
     } else {
         if (req.files.length > 0) {
             const fileName = req.files[0].filename;
-            await unlink(path.join(__dirname, `../../public/uploads/product-imgs/${fileName}`),
+            unlink(path.join(__dirname, `../../public/uploads/product-imgs/${fileName}`),
                 err => {
-                    if (err) throw console.log(err)
+                    if (err) throw console.log(err);
                 })
         }
         res.status(500).json({
@@ -60,5 +61,5 @@ const userValidationHandler = async (req, res, next) => {
 
 module.exports = {
     productInputValidation,
-    userValidationHandler
+    addProductValidationHandler
 }

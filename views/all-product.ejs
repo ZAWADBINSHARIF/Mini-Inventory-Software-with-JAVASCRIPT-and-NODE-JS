@@ -16,6 +16,10 @@
 
     <!-- ================================= Exit Product Image Viewer Modal ================================= -->
 
+    <!-- ================================== start toast msg dailog ============================= -->
+    <%- include('partials/toast-msg/toast-msg'); %> 
+    <!-- ================================== end toast msg dailog ============================= -->
+
     <!-- ========================= start add button ====================== -->
     <div
       class="container d-flex justify-content-center flex-column align-items-center"
@@ -71,25 +75,38 @@
                 <th scope="col"></th>
               </tr>
             </thead>
+            <% if(products) {
+              products.forEach((product) => {
+              %> 
             <tbody>
               <tr>
                 <td class="td-img">
+                  <% if(product.productImg) {%> 
                   <img
                     data-bs-toggle="modal"
                     data-bs-target="#product-img-viewer-modal"
-                    src="./Img/Picture.jpeg"
+                    src="./uploads/product-imgs/<%= product.productImg %>"
                     class="img-thumbnail img-fluid product-img"
                     alt="..."
                   />
+                  <% } else { %>
+                    <img
+                    data-bs-toggle="modal"
+                    data-bs-target="#product-img-viewer-modal"
+                    src="./images/no-pic.png"
+                    class="img-thumbnail img-fluid product-img"
+                    alt="..."
+                  />
+                    <% } %> 
                 </td>
-                <td>Chair</td>
-                <td>ARFL</td>
-                <td class="td-descrip">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
-                  maxime sed deleniti, saepe repudiandae odit voluptas sunt quos
-                  cupiditate nostrum
-                </td>
-                <td>99Tk</td>
+                <td><%= product.productName %></td>
+                <td><%= product.brandName %></td>
+                <% if(product.description) {%>
+                <td class="td-descrip"><%= product.description %></td>
+                <%} else { %>
+                  <td class="td-descrip">No Description</td>
+                  <% } %>
+                <td><%= product.price %></td>
                 <td class="text-center edit-item">
                   <i
                     class="fa-solid fa-pen-to-square fa-2xl btn-update"
@@ -100,11 +117,15 @@
                 </td>
               </tr>
             </tbody>
+            <% })} %> 
           </table>
         </div>
 
         <!-- ============================== End Product table ================================== -->
       </div>
     </div>
+
+    <script src="./js/all_product.js"></script>
+
   </body>
 </html>

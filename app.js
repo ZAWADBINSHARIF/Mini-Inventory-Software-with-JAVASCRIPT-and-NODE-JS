@@ -44,10 +44,8 @@ app.use('/setting', settingRouter);
 app.use(notFoundHandler);
 
 mongoose.connection.once('open', () => {
-
     app.listen(PORT, () => {
         console.log(`Application listening on PORT : http://localhost:${PORT}`);
-    });
-
+    })
     console.log(`database connected successfully`);
-})
+});
