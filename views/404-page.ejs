@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Error - Page Not Found</title>
+</head>
+<body>
+  <style>
+    /* CSS for animation */
+    @keyframes bounce {
+      0% {
+        transform: translateY(0);
+      }
+        25% {
+    transform: translateY(-20px);
+  }
+  
+  50% {
+    transform: translateY(0);
+  }
+  
+  75% {
+    transform: translateY(-10px);
+  }
+  
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* CSS for styling */
+body {
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.error-code {
+  font-size: 100px;
+  color: #0d6efd;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.error-message {
+  font-size: 30px;
+  color: #333333;
+  margin-top: 20px;
+}
+
+.error-message a {
+  color: #0066ff;
+  text-decoration: none;
+}
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="error-code">404 😴</div>
+    <div class="error-message">Oops! The page you were looking for could not be found.</div>
+    <div class="error-message">Go back to the <a href="/">homepage</a> or try searching for the page again.</div>
+  </div>
+</body>
+</html>

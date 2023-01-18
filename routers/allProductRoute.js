@@ -2,7 +2,7 @@
 const express = require('express');
 
 // internal import
-const { getAllProducts, addProduct } = require('../controllers/allProductController');
+const { getAllProducts, addProduct, removeProduct } = require('../controllers/allProductController');
 const decorateHtml = require('../middlewares/common/decorateHtml');
 const productImgUploader = require('../middlewares/products/productImgUploader');
 const { productInputValidation, addProductValidationHandler } = require('../middlewares/products/addProductValidator');
@@ -14,5 +14,7 @@ const title = 'All Product';
 router.route('/')
     .get(decorateHtml(title), getAllProducts)
     .post(productImgUploader, productInputValidation, addProductValidationHandler, addProduct)
+
+router.delete('/:id', removeProduct);
 
 module.exports = router;

@@ -1,5 +1,18 @@
 const addProductForm = document.getElementById('add-product-form');
 
+function toaster(message, fontColor = 'white') {
+    const toastBox = document.querySelector('.toast-box');
+    const toastMsg = document.querySelector('.toast-txt-msg');
+    toastBox.style.opacity = "1";
+    toastMsg.style.color = fontColor;
+    toastMsg.textContent = message;
+
+    setTimeout(() => {
+        toastBox.style.opacity = "0";
+    }, 2000);
+}
+
+// add product submit botton function
 async function addProductSubmitBtn() {
 
     const errorPlaceHolders = document.querySelectorAll('p.error');
@@ -30,13 +43,26 @@ async function addProductSubmitBtn() {
             }
         )
     } else {
-        const toastBox = document.querySelector('.toast-box');
-        const toastMsg = document.querySelector('.toast-txt-msg');
-        toastBox.style.opacity = "1";
-        toastMsg.textContent = 'Product is added successfully !';
+        toaster('Product is added successfully !')
         setTimeout(() => {
             location.reload();
         }, 1000);
     }
 
+}
+
+// Remove product function
+async function removeProduct(product_id) {
+    const response = await fetch(`all-product/${product_id}`, {
+        method: 'DELETE'
+    });
+
+    const result = response.json();
+
+    if (result.errors) {
+        toaster('Error send form server!!', 'red');
+    }
+
+    toaster('Product is removed successfully!', 'yellow');
+    document.getElementById(`#${product_id}`).remove();
 }

@@ -46,7 +46,7 @@
                 placeholder="Product Name"
                 aria-label="Search"
                 name="searchProductName"
-                onkeyup="searchActionBar()"
+                onkeyup="searchAction()"
               />
               <button
                 id="search-btn"
@@ -75,11 +75,11 @@
                 <th scope="col"></th>
               </tr>
             </thead>
+            <tbody>
             <% if(products) {
               products.forEach((product) => {
               %> 
-            <tbody>
-              <tr>
+              <tr id="#<%= product._id %>">
                 <td class="td-img">
                   <% if(product.productImg) {%> 
                   <img
@@ -113,11 +113,11 @@
                     data-bs-toggle="modal"
                     data-bs-target="#edit-product"
                   ></i>
-                  <i class="fa-solid fa-trash fa-2xl btn-delete"></i>
+                  <i class="fa-solid fa-trash fa-2xl btn-delete" ondblclick="removeProduct('<%= product._id %>')"></i>
                 </td>
               </tr>
+              <% })} %> 
             </tbody>
-            <% })} %> 
           </table>
         </div>
 
@@ -125,7 +125,7 @@
       </div>
     </div>
 
-    <script src="./js/all_product.js"></script>
+    <script src="./js/all_product.js" defer></script>
 
   </body>
 </html>

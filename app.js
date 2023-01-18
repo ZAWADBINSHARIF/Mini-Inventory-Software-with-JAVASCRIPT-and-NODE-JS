@@ -12,6 +12,7 @@ const saleItemRoute = require('./routers/saleItemRoute');
 const allProductRouter = require('./routers/allProductRoute');
 const settingRouter = require('./routers/settingRoute');
 const { notFoundHandler } = require('./middlewares/common/errorHandle.js');
+const removeProductRoute = require('./routers/allProductRoute');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -37,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Router setup
 app.use('/', indexRoute);
 app.use('/all-product', allProductRouter);
+app.use('/all-product', removeProductRoute);
 app.use('/saleItem', saleItemRoute);
 app.use('/setting', settingRouter);
 
