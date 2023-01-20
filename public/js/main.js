@@ -1,4 +1,14 @@
-const searchBtnAction = document.querySelector('#search-btn')
+const searchBtnAction = document.querySelector('#search-btn');
+
+
+function showProductImgModal(img_path) {
+    const product_img_viewer_modal_id = document.getElementById('product-img-viewer-modal');
+    const product_img_viewer_modal = new bootstrap.Modal(product_img_viewer_modal_id);
+    const getImgElement = product_img_viewer_modal_id.getElementsByTagName('img');
+    console.log(getImgElement);
+    getImgElement[0].src = img_path;
+    product_img_viewer_modal.show();
+}
 
 
 function searchAction() {

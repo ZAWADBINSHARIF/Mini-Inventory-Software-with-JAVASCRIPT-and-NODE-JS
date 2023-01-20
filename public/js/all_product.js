@@ -15,6 +15,8 @@ function toaster(message, fontColor = 'white') {
 // add product submit botton function
 async function addProductSubmitBtn() {
 
+    const add_product_modal = bootstrap.Modal.getInstance(document.getElementById('add-product-modal'));
+
     const errorPlaceHolders = document.querySelectorAll('p.error');
     for (let i = 0; i < errorPlaceHolders.length; i++) {
         errorPlaceHolders[i].style.display = 'none'
@@ -43,6 +45,7 @@ async function addProductSubmitBtn() {
             }
         )
     } else {
+        add_product_modal.hide();
         toaster('Product is added successfully !')
         setTimeout(() => {
             location.reload();
@@ -53,6 +56,7 @@ async function addProductSubmitBtn() {
 
 // Remove product function
 async function removeProduct(product_id) {
+
     const response = await fetch(`all-product/${product_id}`, {
         method: 'DELETE'
     });
@@ -61,8 +65,8 @@ async function removeProduct(product_id) {
 
     if (result.errors) {
         toaster('Error send form server!!', 'red');
+    } else {
+        toaster('Product is removed successfully!', 'yellow');
+        document.getElementById(`#${product_id}`).remove();
     }
-
-    toaster('Product is removed successfully!', 'yellow');
-    document.getElementById(`#${product_id}`).remove();
 }

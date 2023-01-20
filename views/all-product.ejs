@@ -28,7 +28,7 @@
         <i
           class="fa-solid fa-circle-plus fa-2xl"
           data-bs-toggle="modal"
-          data-bs-target="#add-product"
+          data-bs-target="#add-product-modal"
         ></i>
       </button>
       <div class="showItemContainer">
@@ -83,11 +83,10 @@
                 <td class="td-img">
                   <% if(product.productImg) {%> 
                   <img
-                    data-bs-toggle="modal"
-                    data-bs-target="#product-img-viewer-modal"
                     src="./uploads/product-imgs/<%= product.productImg %>"
                     class="img-thumbnail img-fluid product-img"
-                    alt="..."
+                    alt="Product Image"
+                    onclick="showProductImgModal('./uploads/product-imgs/<%= product.productImg %>')"
                   />
                   <% } else { %>
                     <img
@@ -95,7 +94,7 @@
                     data-bs-target="#product-img-viewer-modal"
                     src="./images/no-pic.png"
                     class="img-thumbnail img-fluid product-img"
-                    alt="..."
+                    alt="No Product Image"
                   />
                     <% } %> 
                 </td>
