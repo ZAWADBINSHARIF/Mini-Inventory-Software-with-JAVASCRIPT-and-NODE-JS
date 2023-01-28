@@ -30,7 +30,8 @@ const productSchema = mongoose.Schema(
             enum: ['admin', 'user'],
             default: 'user'
         }
-    }
+    },
+    { timestamps: true }
 );
 
 const productModel = mongoose.model("all_product", productSchema);

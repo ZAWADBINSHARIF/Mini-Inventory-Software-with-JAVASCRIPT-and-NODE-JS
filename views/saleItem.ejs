@@ -4,33 +4,7 @@
 
    <!-- ================================= Start Product Image Viwer Modal ================================= -->
 
-    <div
-      class="modal fade"
-      id="product-img-viewer-modal"
-      tabindex="-1"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Product Image</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <img
-              src="./Img/img2.jpg"
-              class="img-fluid rounded-top product-img-size-view"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+    <%- include('partials/modals/img-modal/img-viewer-modal.ejs'); %> 
 
     <!-- ================================= Exit Product Image Viwer Modal ================================= -->
 
@@ -48,7 +22,7 @@
               placeholder="Product Name"
               aria-label="Search"
               name="searchProductName"
-              onkeyup="searchActionBar()"
+              onkeyup="searchAction()"
             />
             <button
               id="search-btn"
@@ -151,8 +125,9 @@
 
           <table class="table">
             <thead>
-              <tr>
-                <th scope="col">Product</th>
+
+                <tr>
+                  <th scope="col">Product</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Price</th>
                 <th scope="col">Total</th>
@@ -179,7 +154,7 @@
           </table>
 
           <!-- ==================== End Selected Product Table ========================== -->
-
+          
           <div class="offcanvas-body">
             <div class="d-flex justify-content-end">
               <button
@@ -224,31 +199,42 @@
             </tr>
           </thead>
           <tbody>
+            <% products.forEach(product=>{ %>
             <tr>
               <td class="td-img">
-                <img
-                  data-bs-toggle="modal"
-                  data-bs-target="#product-img-viewer-modal"
-                  src="./Img/Picture.jpeg"
+                <% if(product.productImg){ %> 
+                  <img
+                  src="./uploads/product-imgs/<%= product.productImg %>"
                   class="img-thumbnail img-fluid product-img"
-                  alt="..."
+                  alt="Product Image"
+                  onclick="showProductImgModal('./uploads/product-imgs/<%= product.productImg %>')"
                 />
+                <% }else{ %> 
+                  <img
+                    data-bs-toggle="modal"
+                    data-bs-target="#product-img-viewer-modal"
+                    src="./images/no-pic.png"
+                    class="img-thumbnail img-fluid product-img"
+                    alt="No Product Image"
+                  />
+                <% } %> 
               </td>
-              <td>Television</td>
-              <td>ARFL</td>
-              <td class="td-descrip">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
-                maxime sed deleniti, saepe repudiandae odit voluptas sunt quos
-                cupiditate nostrum
-              </td>
-              <td>99Tk</td>
+              <td><%= product.productName %></td>
+              <td><%= product.brandName %></td>
+              <% if(product.description) {%>
+                <td class="td-descrip"><%= product.description %></td>
+                <%} else { %>
+                  <td class="td-descrip">No Description</td>
+                  <% } %>
+              <td><%= product.price %>TK</td>
               <td class="text-center td-product-quantity">
-                <input type="number" name="product_quantity" value="0" />
-                <div class="error product_quantity">
+                <input type="number" name="product_quantity" class="px-1" value="0" />
+                <div class="product_quantity">
                   Invalid Product Quantity
                 </div>
               </td>
             </tr>
+            <% }) %>
           </tbody>
         </table>
       </div>

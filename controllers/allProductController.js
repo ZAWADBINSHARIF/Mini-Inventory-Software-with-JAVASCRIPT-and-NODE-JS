@@ -5,11 +5,9 @@ const { unlink } = require('fs');
 // internal import
 const Product = require('../models/product');
 
-async function getAllProducts(req, res, next) {
-
-    const products = await Product.find().exec();
-
+async function getAllProducts(req, res, next) {   
     try {
+        const products = await Product.find().sort({ updatedAt: -1 });
         res.render('all-product', {
             products
         });

@@ -1,6 +1,6 @@
 const searchBtnAction = document.querySelector('#search-btn');
 
-
+// show product image modal
 function showProductImgModal(img_path) {
     const product_img_viewer_modal_id = document.getElementById('product-img-viewer-modal');
     const product_img_viewer_modal = new bootstrap.Modal(product_img_viewer_modal_id);
