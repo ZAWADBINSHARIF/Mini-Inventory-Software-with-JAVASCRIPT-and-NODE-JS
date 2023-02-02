@@ -12,20 +12,16 @@ async function getSaleItem(req, res, next) {
     }
 }
 
-async function getProducts(req, res, next) {
+async function getCartProducts(req, res, next) {
     try {
         if (req.body) {
-
             const product_ids = [];
+
             req.body.forEach(index => {
                 return product_ids.push(index._id);
             });
 
-            console.log(product_ids)
-
             const products = await Product.find({ "_id": { $in: product_ids } })
-
-            console.log(products);
 
             res.json({ productsInfo: products });
         }
@@ -34,4 +30,4 @@ async function getProducts(req, res, next) {
     }
 }
 
-module.exports = { getSaleItem, getProducts };
+module.exports = { getSaleItem, getCartProducts };
