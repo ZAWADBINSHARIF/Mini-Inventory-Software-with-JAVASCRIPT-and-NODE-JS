@@ -174,9 +174,8 @@
         <button
           type="button"
           class="btn btn-primary"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#product-cart"
           aria-controls="offcanvasRight"
+          onclick="sendSeletedProductsToCart()"
         >
           Show Cart
         </button>
@@ -200,7 +199,7 @@
           </thead>
           <tbody>
             <% products.forEach(product=>{ %>
-            <tr>
+            <tr id="<%= product._id %>">
               <td class="td-img">
                 <% if(product.productImg){ %> 
                   <img
@@ -228,21 +227,22 @@
                   <% } %>
               <td><%= product.price %>TK</td>
               <td class="text-center td-product-quantity">
-                <input type="number" name="product_quantity" class="px-1" value="0" />
-                <div class="product_quantity">
+                <input type="number" name="product_quantity" class="px-1" value="0"
+                onchange="productQuantityInputChange('<%= product._id %>', this.value)"
+                />
+                <p class="error error_product_quantity">
                   Invalid Product Quantity
-                </div>
+                </p>
               </td>
             </tr>
             <% }) %>
           </tbody>
         </table>
       </div>
-
       <!-- ============================== End Product table ================================== -->
     </div>
 
     <!-- JavaScript File sale item  -->
-    <script src="./js/sale_item.js"></script>
+    <script defer src="./js/sale_item.js"></script>
   </body>
 </html>

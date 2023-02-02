@@ -92,8 +92,8 @@ input.error{
 }
 
 p.error{
-   display: 'none';
-   color: red; 
+   display: none;
+   color: red;
 }
 
 .setting-ul>li{
