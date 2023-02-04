@@ -57,7 +57,7 @@
         <div class="offcanvas-body">
           <!-- ======================= start customer details form ========================== -->
 
-          <form class="mb-3">
+          <form id="customer_form" class="mb-3">
             <label>Customer Name</label>
             <input
               type="text"
@@ -65,6 +65,7 @@
               placeholder="Customer Name"
               name="customer_name"
             />
+            <p class="error customer_name_error"></p>
             <label>Customer Address</label>
             <input
               type="text"
@@ -72,6 +73,7 @@
               placeholder="Customer Address"
               name="customer_address"
             />
+            <p class="error customer_number_error"></p>
             <label>Customer Number</label>
             <input
               type="text"
@@ -93,7 +95,7 @@
             >
               Back
             </button>
-            <button id="cart-invoice-btn" type="button" class="btn btn-primary">
+            <button id="cart-invoice-btn" type="button" class="btn btn-primary" onclick="download_invoice()">
               Download Invoice
             </button>
           </div>

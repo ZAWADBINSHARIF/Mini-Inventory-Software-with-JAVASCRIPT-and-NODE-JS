@@ -26,7 +26,7 @@ async function addProductSubmitBtn() {
     for (let i = 0; i < errorInputClass.length; i++) {
         errorInputClass[i].classList.remove('error');
     }
-
+    
     const formData = new FormData(addProductForm);
 
     const response = await fetch('/all-product', {

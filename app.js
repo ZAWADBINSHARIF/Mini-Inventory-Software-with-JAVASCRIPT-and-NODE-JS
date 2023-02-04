@@ -11,6 +11,7 @@ const indexRoute = require('./routers/indexRoute');
 const saleItemRoute = require('./routers/saleItemRoute');
 const allProductRouter = require('./routers/allProductRoute');
 const settingRouter = require('./routers/settingRoute');
+const invoiceRouter = require('./routers/invoiceRoute.js');
 const { notFoundHandler } = require('./middlewares/common/errorHandle.js');
 const removeProductRoute = require('./routers/allProductRoute');
 
@@ -38,8 +39,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Router setup
 app.use('/', indexRoute);
 app.use('/all-product', allProductRouter);
-app.use('/all-product', removeProductRoute);
 app.use('/saleItem', saleItemRoute);
+app.use('/invoice', invoiceRouter);
 app.use('/setting', settingRouter);
 
 // 404 page not found handler

@@ -1,4 +1,5 @@
-let basket = [];
+let basket = []; // store seleted id of products and quantities
+let basketOfProductCart = []; // store id of product cart and quantities for comfire to sale and get invoice.
 
 function productQuantityInputChange(product_id, quantity) {
 
@@ -42,14 +43,17 @@ async function showSeletedProductsCart() {
             body: JSON.stringify(basket)
         }
     );
-    const result = await response.json()
+    const result = await response.json();
     let total_price = 0;
+    basketOfProductCart = []
 
     if (!result.productsInfo) return;
 
     cartViewModal_Table_Tbody.innerHTML = '';
 
     for (let i = 0; i < result.productsInfo.length; i++) {
+
+        // Store product quantity to getQuantityValue which are responsed by server.
         const getQuantityValue = basket.find(index => {
             return (index._id === result.productsInfo[i]._id);
         }).quantity;
@@ -57,6 +61,7 @@ async function showSeletedProductsCart() {
         // total price of one product with quantity. {Quantity * Product price}
         const totalOneProductPrice = result.productsInfo[i].price * getQuantityValue
         total_price += totalOneProductPrice;
+        basketOfProductCart.push({ _id: result.productsInfo[i]._id, quantity: getQuantityValue });
 
         const tableData = `
             <tr>
@@ -77,7 +82,34 @@ async function showSeletedProductsCart() {
                 <td>${total_price}Tk</td>
             </tr>
     `
-
+    console.log(basketOfProductCart)
     const cartModal = new bootstrap.Offcanvas(document.getElementById('product-cart'));
     cartModal.show();
+}
+
+async function sendCustomerInfo() {
+    const customerForm = document.getElementById('customer_form')
+
+    const formData = new FormData(customerForm);
+
+    const response = await fetch('invoice/createInvoice', {
+        method: "POST",
+        body: formData
+    })
+
+    // const responseResult = await response.json();
+
+    // if (responseResult.errors) {
+    //     Object.keys(responseResult.errors).forEach(fieldName => {
+    //         const errorPlaceHolder = document.querySelector(`.${fieldName}_error`);
+    //         errorPlaceHolder.textContent = responseResult.errors[fieldName].msg;
+    //         errorPlaceHolder.style.display = 'block';
+    //         customerForm[fieldName].classList.add('error');
+    //     })
+    // }
+
+}
+
+async function download_invoice() {
+    await sendCustomerInfo();
 }
