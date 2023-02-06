@@ -61,7 +61,12 @@ async function showSeletedProductsCart() {
         // total price of one product with quantity. {Quantity * Product price}
         const totalOneProductPrice = result.productsInfo[i].price * getQuantityValue
         total_price += totalOneProductPrice;
-        basketOfProductCart.push({ _id: result.productsInfo[i]._id, quantity: getQuantityValue });
+        basketOfProductCart.push({
+            description: result.productsInfo[i].productName,
+            quantity: getQuantityValue,
+            price: result.productsInfo[i].price,
+            "tax-rate": 0
+        });
 
         const tableData = `
             <tr>
@@ -88,26 +93,63 @@ async function showSeletedProductsCart() {
 }
 
 async function sendCustomerInfo() {
-    const customerForm = document.getElementById('customer_form')
-
-    const formData = new FormData(customerForm);
+    const customerForm = document.getElementById('customer_form');
+    const formData = {
+        'customer_name': customerForm['customer_name'].value,
+        'customer_address': customerForm['customer_address'].value,
+        'customer_number': customerForm['customer_number'].value,
+        'sale_products': basketOfProductCart
+    }
 
     const response = await fetch('invoice/createInvoice', {
         method: "POST",
-        body: formData
-    })
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    });
 
-    // const responseResult = await response.json();
+    const responseResult = await response.json();
 
-    // if (responseResult.errors) {
-    //     Object.keys(responseResult.errors).forEach(fieldName => {
-    //         const errorPlaceHolder = document.querySelector(`.${fieldName}_error`);
-    //         errorPlaceHolder.textContent = responseResult.errors[fieldName].msg;
-    //         errorPlaceHolder.style.display = 'block';
-    //         customerForm[fieldName].classList.add('error');
-    //     })
-    // }
+    removeErrors();
 
+    if (responseResult.errors) {
+        Object.keys(responseResult.errors).forEach(fieldName => {
+            const errorPlaceHolder = document.querySelector(`.${fieldName}_error`);
+            errorPlaceHolder.textContent = responseResult.errors[fieldName].msg;
+            errorPlaceHolder.style.display = 'block';
+            customerForm[fieldName].classList.add('error');
+        })
+    }
+
+    if (responseResult.result && responseResult.result?.fileCreated) {
+        const download = await fetch(`/invoice/download/${responseResult.result.filename}`,
+            {
+                method: 'GET'
+            });
+
+        const blob = await download.blob(); // blob is recevied any kind of file
+        console.log(blob)
+        const link = document.createElement('a'); // create an anchore tag
+        link.href = URL.createObjectURL(blob); // href added in anchore tag which was created
+        link.download = `${responseResult.result.filename}.pdf`; // this download attribue works set a name of downloaded file
+        document.body.appendChild(link); // create a append child in body
+        link.click();
+        document.body.removeChild(link);
+    }
+
+}
+
+function removeErrors() {
+    const errorPlaceHolders = document.querySelectorAll('p.error');
+    for (let i = 0; i < errorPlaceHolders.length; i++) {
+        errorPlaceHolders[i].style.display = 'none'
+    }
+
+    const errorInputClass = document.querySelectorAll('input.error');
+    for (let i = 0; i < errorInputClass.length; i++) {
+        errorInputClass[i].classList.remove('error');
+    }
 }
 
 async function download_invoice() {

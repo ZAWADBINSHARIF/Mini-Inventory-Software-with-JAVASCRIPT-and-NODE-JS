@@ -1,12 +1,13 @@
+// external import
 const { check, validationResult } = require('express-validator');
 
 const customerInfoInputValidation = [
     check('customer_name')
-        .isLength({ mim: 1 })
+        .isLength({ min: 1 })
         .withMessage('Customer name is required')
         .trim(),
     check('customer_address')
-        .isLength({ mim: 1 })
+        .isLength({ min: 1 })
         .withMessage('Customer address is required')
         .trim()
 ];

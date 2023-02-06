@@ -8,7 +8,15 @@ async function getSaleItem(req, res, next) {
             products
         });
     } catch (error) {
-        next(error);
+        if (error) {
+            return res.status(500).json({
+                errors: {
+                    common: {
+                        msg: error.message
+                    }
+                }
+            })
+        }
     }
 }
 
@@ -18,7 +26,7 @@ async function getCartProducts(req, res, next) {
             const product_ids = [];
 
             req.body.forEach(index => {
-                return product_ids.push(index._id);
+                product_ids.push(index._id);
             });
 
             const products = await Product.find({ "_id": { $in: product_ids } })
@@ -26,7 +34,15 @@ async function getCartProducts(req, res, next) {
             res.json({ productsInfo: products });
         }
     } catch (error) {
-        next(error)
+        if (error) {
+            return res.status(500).json({
+                errors: {
+                    common: {
+                        msg: error.message
+                    }
+                }
+            })
+        }
     }
 }
 

@@ -44,7 +44,7 @@ app.use('/invoice', invoiceRouter);
 app.use('/setting', settingRouter);
 
 // 404 page not found handler
-app.use(notFoundHandler);
+app.use('*', notFoundHandler);
 
 mongoose.connection.once('open', () => {
     app.listen(PORT, () => {
