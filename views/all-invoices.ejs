@@ -1,0 +1,60 @@
+<!-- ======================== Start Nav Bar =========================== -->
+<%- include('partials/navbar.ejs'); %>
+<!-- ======================== Exit Start Nav Bar =========================== -->
+
+<div class="container">
+
+    <nav class="navbar navbar-light bg-light my-3">
+        <div class="container-fluid justify-content-between">
+          <h1 class="text-capitalize">All Invoices</h1>
+          <form class="d-flex">
+            <input
+              id="searchProductName"
+              class="form-control me-2"
+              type="search"
+              placeholder="Product Name"
+              aria-label="Search"
+              name="searchProductName"
+              onkeyup="searchAction()"
+            />
+            <button
+              id="search-btn"
+              class="btn btn-outline-primary"
+              type="submit"
+            >
+              Search
+            </button>
+          </form>
+        </div>
+      </nav>
+
+    <table class="table mt-5">
+      <thead>
+        <tr>
+          <th scope="col">Customer Name</th>
+          <th scope="col">Invoice Number</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (all_invoices) {
+        all_invoices.forEach(invoice => { 
+        %>
+ 
+        <tr>
+          <td class="fw-bolder"><%= invoice.customerName %></td>
+          <td class="fw-normal"><%= invoice.invoiceNumber %></td>
+          <td class='py-4'>
+            <i class="fa-sharp fa-solid fa-download fa-2xl btn-download"
+            onclick="download_invoice('<%= invoice.invoiceName%>')"
+            ></i>
+            </td>
+        </tr>
+    <% })} %> 
+      </tbody>
+    </table>
+</div>
+
+<script defer src="./js/all_invoices.js"></script>
+    </body>
+</html>

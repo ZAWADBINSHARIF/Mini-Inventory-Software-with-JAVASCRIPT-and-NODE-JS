@@ -4,15 +4,23 @@ const fs = require('fs');
 const path = require('path');
 const { format } = require('date-fns');
 
-const randomNumber = require('crypto').randomBytes(12).toString('hex');
+// internal import
+const invoiceSchema = require('../models/invoice.js');
+
+const randomNumber = require('crypto').randomBytes(10).toString('hex');
 const company = {
     name: 'Fairy - HUB of Baby Books/Toys',
     address: 'Dhaka Bangladesh',
     city: 'Dhaka'
 }
 
-function get_all_invoices(req, res, next) {
-    res.send('<h1>Invoice page</h1>')
+async function get_all_invoices(req, res, next) {
+    try {
+        const all_invoices = await invoiceSchema.find().sort({ updatedAt: -1 });
+        res.render('all-invoices', { all_invoices });
+    } catch (error) {
+
+    }
 }
 
 function createInvoice(req, res, next) {
@@ -21,19 +29,6 @@ function createInvoice(req, res, next) {
 
     if (req.body['sale_products']) {
         products.push(...req.body['sale_products'])
-    }
-    console.log(products);
-    try {
-
-    } catch (error) {
-        if (error)
-            res.status(500).json({
-                errors: {
-                    common: {
-                        msg: error.message
-                    }
-                }
-            })
     }
 
     const invoiceData = {
@@ -73,10 +68,28 @@ function createInvoice(req, res, next) {
             "currency": "BDT"
         }
     };
-    easyinvoice.createInvoice(invoiceData, function (result) {
+    easyinvoice.createInvoice(invoiceData, async function (result) {
         //The response will contain a base64 encoded PDF file
         const filename = req.body["customer_name"].split(" ").join('-') + "-" + randomNumber;
         fs.writeFileSync(`public/invoices/${filename}.pdf`, result.pdf, 'base64');
+        try {
+            const newInvoice = new invoiceSchema(
+                {
+                    invoiceNumber: randomNumber,
+                    invoiceName: filename,
+                    customerName: req.body.customer_name
+                }
+            );
+            await newInvoice.save();
+        } catch (error) {
+            res.status(500).json({
+                errors: {
+                    common: {
+                        msg: error.message
+                    }
+                }
+            });
+        }
         res.status(200).json({ result: { fileCreated: true, filename } });
     });
 

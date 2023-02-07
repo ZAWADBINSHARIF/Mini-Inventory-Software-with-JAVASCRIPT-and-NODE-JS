@@ -87,7 +87,6 @@ async function showSeletedProductsCart() {
                 <td>${total_price}Tk</td>
             </tr>
     `
-    console.log(basketOfProductCart)
     const cartModal = new bootstrap.Offcanvas(document.getElementById('product-cart'));
     cartModal.show();
 }
@@ -129,7 +128,6 @@ async function sendCustomerInfo() {
             });
 
         const blob = await download.blob(); // blob is recevied any kind of file
-        console.log(blob)
         const link = document.createElement('a'); // create an anchore tag
         link.href = URL.createObjectURL(blob); // href added in anchore tag which was created
         link.download = `${responseResult.result.filename}.pdf`; // this download attribue works set a name of downloaded file
@@ -153,5 +151,14 @@ function removeErrors() {
 }
 
 async function download_invoice() {
-    await sendCustomerInfo();
+    const invoiceDownloadBtn = document.getElementById('invoice-download-btn');
+    if (invoiceDownloadBtn.disabled === true) return;
+    invoiceDownloadBtn.disabled = true;
+    try {
+        await sendCustomerInfo();
+    } catch (error) {
+        alert(error);
+    }
+    invoiceDownloadBtn.disabled = false;
+
 }
