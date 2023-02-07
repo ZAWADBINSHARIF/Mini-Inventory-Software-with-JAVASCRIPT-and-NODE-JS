@@ -7,7 +7,6 @@ const { format } = require('date-fns');
 // internal import
 const invoiceSchema = require('../models/invoice.js');
 
-const randomNumber = require('crypto').randomBytes(10).toString('hex');
 const company = {
     name: 'Fairy - HUB of Baby Books/Toys',
     address: 'Dhaka Bangladesh',
@@ -19,12 +18,12 @@ async function get_all_invoices(req, res, next) {
         const all_invoices = await invoiceSchema.find().sort({ updatedAt: -1 });
         res.render('all-invoices', { all_invoices });
     } catch (error) {
-
+        
     }
 }
 
 function createInvoice(req, res, next) {
-
+    const randomNumber = require('crypto').randomBytes(10).toString('hex');
     const products = [];
 
     if (req.body['sale_products']) {
@@ -81,6 +80,7 @@ function createInvoice(req, res, next) {
                 }
             );
             await newInvoice.save();
+            res.status(200).json({ result: { fileCreated: true, filename } });
         } catch (error) {
             res.status(500).json({
                 errors: {
@@ -90,14 +90,17 @@ function createInvoice(req, res, next) {
                 }
             });
         }
-        res.status(200).json({ result: { fileCreated: true, filename } });
     });
-
 }
 
 function downloadInvoice(req, res, next) {
     if (req.params.pdf_file_name)
-        res.download(`public/invoices/${req.params.pdf_file_name}.pdf`);
+        res.download(`public/invoices/${req.params.pdf_file_name}.pdf`,
+            {
+                header: {
+                    'Content-Type': 'application/pdf'
+            }
+        });
 }
 
 module.exports = {

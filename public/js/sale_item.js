@@ -154,11 +154,7 @@ async function download_invoice() {
     const invoiceDownloadBtn = document.getElementById('invoice-download-btn');
     if (invoiceDownloadBtn.disabled === true) return;
     invoiceDownloadBtn.disabled = true;
-    try {
-        await sendCustomerInfo();
-    } catch (error) {
-        alert(error);
-    }
+    await sendCustomerInfo();
     invoiceDownloadBtn.disabled = false;
 
 }
