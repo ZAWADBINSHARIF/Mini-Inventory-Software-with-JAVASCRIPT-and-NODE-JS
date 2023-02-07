@@ -13,7 +13,7 @@ function showProductImgModal(img_path) {
 
 function searchAction() {
     const searchInputValue = document.querySelector('#searchProductName').value.toUpperCase().trim();
-    const all_products_table_tbody = document.querySelector('#all-products-table').querySelector('tbody')
+    const all_products_table_tbody = document.querySelector('#all-products-table').querySelector('tbody');
     const products_table_tr = all_products_table_tbody.querySelectorAll('tr')
 
     for (let i = 0; i < products_table_tr.length; i++) {
