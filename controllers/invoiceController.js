@@ -15,7 +15,7 @@ const company = {
 
 async function get_all_invoices(req, res, next) {
     try {
-        const all_invoices = await invoiceSchema.find().sort({ updatedAt: -1 });
+        const all_invoices = await invoiceSchema.find().sort({ createdAt: -1 });
         res.render('all-invoices', { all_invoices });
     } catch (error) {
         
