@@ -40,7 +40,7 @@ function uploader(
             if (allowed_file_type.includes(file.mimetype)) {
                 cb(null, true);
             } else {
-                cb(createHttpError(error_message));
+                cb(error_message);
             }
         }
     });

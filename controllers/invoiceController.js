@@ -80,7 +80,7 @@ function createInvoice(req, res, next) {
                 }
             );
             await newInvoice.save();
-            res.status(200).json({ result: { fileCreated: true, filename } });
+            res.status(201).json({ result: { fileCreated: true, filename } });
         } catch (error) {
             res.status(500).json({
                 errors: {

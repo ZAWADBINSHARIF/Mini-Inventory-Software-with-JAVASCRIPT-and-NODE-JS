@@ -40,6 +40,7 @@ async function addProductSubmitBtn() {
             fieldName => {
                 const errorPlaceHolder = document.querySelector(`.${fieldName}-error`);
                 errorPlaceHolder.textContent = responseResult.errors[fieldName].msg;
+                console.log(responseResult.errors[fieldName].msg)
                 errorPlaceHolder.style.display = 'block';
                 addProductForm[fieldName].classList.add('error');
             }

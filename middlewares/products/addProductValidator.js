@@ -53,7 +53,7 @@ const addProductValidationHandler = (req, res, next) => {
                     if (err) throw console.log(err);
                 })
         }
-        res.status(500).json({
+        res.status(400).json({
             errors: mappedErrors
         });
     }

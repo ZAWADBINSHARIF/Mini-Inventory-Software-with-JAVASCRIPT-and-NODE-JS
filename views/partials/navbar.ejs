@@ -33,7 +33,11 @@
     <!-- main JavaScript file  -->
     <script src="./js/main.js" defer></script>
 
-    <title><%=title%></title>
+    <% if(locals.title == null){%>
+      <title>No Title</title>
+    <%}else{%>
+        <title><%=locals.title%></title>
+    <%}%>
   </head>
   <body>
     <!-- ======================== Start Nav Bar =========================== -->

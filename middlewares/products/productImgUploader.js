@@ -13,7 +13,7 @@ function productImgUploader(req, res, next) {
     upload.any()(req, res, err => {
         if (err instanceof multer.MulterError) {
             console.log(err)
-            res.status(500).json({
+            res.status(400).json({
                 errors: {
                     productImg: {
                         msg: err.message

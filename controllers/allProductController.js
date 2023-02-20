@@ -35,7 +35,7 @@ async function addProduct(req, res, next) {
 
     try {
         await newProduct.save();
-        return res.status(200).json({ message: 'Product is added succcessfully' })
+        return res.status(201).json({ message: 'Product is added succcessfully' })
     } catch (error) {
         if (error)
             return res.status(500).json(

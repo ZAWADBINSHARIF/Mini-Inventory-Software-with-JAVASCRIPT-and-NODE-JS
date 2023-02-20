@@ -12,8 +12,7 @@ const saleItemRoute = require('./routers/saleItemRoute');
 const allProductRouter = require('./routers/allProductRoute');
 const settingRouter = require('./routers/settingRoute');
 const invoiceRouter = require('./routers/invoiceRoute.js');
-const { notFoundHandler } = require('./middlewares/common/errorHandle.js');
-const removeProductRoute = require('./routers/allProductRoute');
+const { notFoundHandler, errorHandle } = require('./middlewares/common/errorHandle.js');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -44,7 +43,10 @@ app.use('/invoice', invoiceRouter);
 app.use('/setting', settingRouter);
 
 // 404 page not found handler
-app.use('*', notFoundHandler);
+app.all('*', notFoundHandler);
+
+// express Error Handler
+app.use(errorHandle);
 
 mongoose.connection.once('open', () => {
     app.listen(PORT, () => {
