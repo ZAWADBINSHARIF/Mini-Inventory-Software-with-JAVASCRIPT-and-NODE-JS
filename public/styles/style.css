@@ -62,8 +62,8 @@ thead>tr>th{
 }
 
 .product-img-size-view{
-    width: 500px;
-    height: 400px;
+    width: 480px;
+    max-height: 720px;
 }
 
 .edit-item>i{
@@ -178,4 +178,25 @@ p.error{
 
 .btn-download:hover{
     cursor: pointer;
+}
+
+/* ===================== login page =================== */
+
+.login-form {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    background-color: #fff;
+    animation-name: slide-up;
+    animation-duration: 0.5s;
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
 }

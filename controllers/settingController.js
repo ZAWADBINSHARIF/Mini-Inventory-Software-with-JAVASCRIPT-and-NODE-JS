@@ -1,5 +1,9 @@
 const getSetting = (req, res, next) => {
-    res.render('setting');
+    res.render('setting_pages/setting');
 }
 
-module.exports = { getSetting };
+const addUser = (req, res, next) => {
+    
+}
+
+module.exports = { getSetting, addUser };

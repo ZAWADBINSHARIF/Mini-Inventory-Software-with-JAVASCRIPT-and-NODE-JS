@@ -2,14 +2,13 @@
 const express = require('express');
 
 // internal import
-const { getSetting, addUser } = require('../controllers/settingController');
+const { getUserSetting } = require('../controllers/userSettingController');
 const decorateHtml = require('../middlewares/common/decorateHtml');
 
 const router = express.Router();
 
-const title = 'Setting';
+const title = 'User Setting';
 
-router.get('/', decorateHtml(title), getSetting);
-router.post('/addUser', addUser);
+router.get('/', decorateHtml(title), getUserSetting)
 
 module.exports = router;

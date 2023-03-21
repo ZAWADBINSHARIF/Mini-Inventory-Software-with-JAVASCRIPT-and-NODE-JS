@@ -12,6 +12,8 @@ const saleItemRoute = require('./routers/saleItemRoute');
 const allProductRouter = require('./routers/allProductRoute');
 const settingRouter = require('./routers/settingRoute');
 const invoiceRouter = require('./routers/invoiceRoute.js');
+const loginRoute = require('./routers/loginRoute.js');
+const userSettingRouter = require('./routers/userSettingRouter')
 const { notFoundHandler, errorHandle } = require('./middlewares/common/errorHandle.js');
 
 const app = express();
@@ -36,11 +38,13 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Router setup
+app.use('/login', loginRoute);
 app.use('/', indexRoute);
 app.use('/all-product', allProductRouter);
 app.use('/saleItem', saleItemRoute);
 app.use('/invoice', invoiceRouter);
 app.use('/setting', settingRouter);
+app.use('/user-setting', userSettingRouter);
 
 // 404 page not found handler
 app.all('*', notFoundHandler);
