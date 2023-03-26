@@ -1,5 +1,18 @@
 const searchBtnAction = document.querySelector('#search-btn');
 
+// toaster message fuction
+function toaster(message, fontColor = 'white') {
+    const toastBox = document.querySelector('.toast-box');
+    const toastMsg = document.querySelector('.toast-txt-msg');
+    toastBox.style.opacity = "1";
+    toastMsg.style.color = fontColor;
+    toastMsg.textContent = message;
+
+    setTimeout(() => {
+        toastBox.style.opacity = "0";
+    }, 2000);
+}
+
 // show product image modal
 function showProductImgModal(img_path) {
     const product_img_viewer_modal_id = document.getElementById('product-img-viewer-modal');

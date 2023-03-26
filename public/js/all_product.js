@@ -1,17 +1,5 @@
 const addProductForm = document.getElementById('add-product-form');
 
-function toaster(message, fontColor = 'white') {
-    const toastBox = document.querySelector('.toast-box');
-    const toastMsg = document.querySelector('.toast-txt-msg');
-    toastBox.style.opacity = "1";
-    toastMsg.style.color = fontColor;
-    toastMsg.textContent = message;
-
-    setTimeout(() => {
-        toastBox.style.opacity = "0";
-    }, 2000);
-}
-
 // add product submit botton function
 async function addProductSubmitBtn() {
 
@@ -65,7 +53,7 @@ async function removeProduct(product_id) {
     const result = response.json();
 
     if (result.errors) {
-        toaster('Error send form server!!', 'red');
+        toaster('Error send form server!!', 'yellow');
     } else {
         toaster('Product is removed successfully!', 'yellow');
         document.getElementById(`#${product_id}`).remove();

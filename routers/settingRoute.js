@@ -10,6 +10,5 @@ const router = express.Router();
 const title = 'Setting';
 
 router.get('/', decorateHtml(title), getSetting);
-router.post('/addUser', addUser);
 
 module.exports = router;
