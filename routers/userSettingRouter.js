@@ -11,6 +11,6 @@ const router = express.Router();
 const title = 'User Setting';
 
 router.get('/', decorateHtml(title), getUserSetting);
-router.post('/add-user', addUserInputValidation, userValidationHandler, addUser);
+router.post('/add-user', decorateHtml(title), addUserInputValidation, userValidationHandler, addUser);
 
 module.exports = router;

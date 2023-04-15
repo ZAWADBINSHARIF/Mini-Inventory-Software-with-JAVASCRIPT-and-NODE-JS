@@ -1,4 +1,4 @@
-const searchBtnAction = document.querySelector('#search-btn');
+let searchBtnAction = document.querySelector('#search-btn') || null;
 
 // toaster message fuction
 function toaster(message, fontColor = 'white') {

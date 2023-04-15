@@ -34,14 +34,13 @@
     <script src="./js/main.js" defer></script>
 
     <% if(locals.title == null){%>
-      <title>No Title</title>
+    <title>No Title</title>
     <%}else{%>
-        <title><%=locals.title%></title>
+    <title><%=locals.title%></title>
     <%}%>
 
     <!-- fab icon -->
-    <link rel="shortcut icon" href="./images/fabicon.png" type="image/x-icon">
-
+    <link rel="shortcut icon" href="./images/fabicon.png" type="image/x-icon" />
   </head>
   <body>
     <!-- ======================== Start Nav Bar =========================== -->
@@ -79,13 +78,50 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/setting">Setting</a>
+              <a class="nav-link" aria-current="page" href="/setting"
+                >Setting</a
+              >
             </li>
-            <li class="nav-logout ms-auto">
-              <a class="nav-link" aria-current="page" href="/logout">Logout</a>
+            <% if(locals.loggedInUser && locals.loggedInUser.username) {%>
+            <li class="nav-item ms-auto">
+              <a class="nav-link text-uppercase" aria-current="page" href="#"
+                ><%= locals.loggedInUser.username %></a
+              >
             </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="#"
+                onclick="logout()"
+                >Logout</a
+              >
+            </li>
+            <% } else { %>
+            <li class="nav-item ms-auto">
+              <a class="nav-link" aria-current="page" href="/login">Login</a>
+            </li>
+            <% } %>
           </ul>
         </div>
       </div>
     </nav>
     <!-- ======================== Exit Start Nav Bar =========================== -->
+
+    <!-- ================================== start toast msg dailog ============================= -->
+    <%- include('toast-msg/toast-msg'); %>
+    <!-- ================================== end toast msg dailog ============================= -->
+
+    <script>
+      async function logout() {
+        fetch("/login/logout", {
+          method: "delete",
+        }); 
+        toaster(`User is logout successfully!`);
+        setTimeout(() => {
+          window.location.replace("/login");
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>

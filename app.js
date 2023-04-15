@@ -15,6 +15,7 @@ const invoiceRouter = require('./routers/invoiceRoute.js');
 const loginRoute = require('./routers/loginRoute.js');
 const userSettingRouter = require('./routers/userSettingRouter')
 const { notFoundHandler, errorHandle } = require('./middlewares/common/errorHandle.js');
+const { checkLogin } = require('./middlewares/common/checkLogin.js');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -23,7 +24,7 @@ const PORT = process.env.PORT || 4000;
 dbConnect();
 
 // cookie-parser
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
 // json parser
 app.use(express.json());
@@ -39,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Router setup
 app.use('/login', loginRoute);
+app.use(checkLogin)
 app.use('/', indexRoute);
 app.use('/all-product', allProductRouter);
 app.use('/saleItem', saleItemRoute);

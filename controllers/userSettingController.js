@@ -4,8 +4,16 @@ const bcrypt = require('bcrypt');
 // internal import
 const User = require('../models/user.js');
 
-function getUserSetting(req, res, next) {
-    res.render('setting_pages/user-setting');
+async function getUserSetting(req, res, next) {
+    try {
+        const allUsers = await User.find();
+        res.render('setting_pages/user-setting', {
+            allUsers
+        });
+    } catch (error) {
+        next(error);
+    }
+
 }
 
 async function addUser(req, res, next) {
@@ -18,10 +26,13 @@ async function addUser(req, res, next) {
             password: hashPass
         });
 
+        const allUsers = await User.find();
+
         await newUser.save();
         return res.render('setting_pages/user-setting', {
             title: 'User is added',
-            errors:{},
+            allUsers,
+            errors: {},
             data: {
                 common: {
                     msg: `${req.body.name} is successfully added`
@@ -29,7 +40,11 @@ async function addUser(req, res, next) {
             }
         })
     } catch (error) {
-
+        res.status(500).json({
+            errors: {
+                common: "Unknown error occured!"
+            }
+        })
     }
 
 

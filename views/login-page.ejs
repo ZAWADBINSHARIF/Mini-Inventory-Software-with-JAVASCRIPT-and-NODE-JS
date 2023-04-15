@@ -30,9 +30,6 @@
     <!-- CSS File  -->
     <link rel="stylesheet" href="./styles/style.css" />
 
-    <!-- main JavaScript file  -->
-    <script src="./js/main.js" defer></script>
-
     <% if(locals.title == null){%>
       <title>No Title</title>
     <%}else{%>
@@ -47,21 +44,25 @@
       <div class="col-md-6">
         <div class="login-form">
           <h2 class="text-center mb-4">Login</h2>
-          <form>
+          <form method="post" action="/login">
             <div class="mb-3">
               <label for="email" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="email" required>
-              <p class="error email-error"></p>
+              <input type="email" value="<%=data.email%>" class="form-control" id="email" name="email" required>
+              <% if(locals.errors.email) { %>
+              <p class="text-danger"><%= locals.errors.email.msg %></p>
+              <% } %>
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
               <div class="input-group">
-                <input type="password" class="form-control" id="password" required>
+                <input type="password" value="<%=data.password%>" name="password" class="form-control" id="password" required>
                 <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                   <i class="far fa-eye"></i>
                 </button>
               </div>
-              <p class="error password-error"></p>
+              <% if(locals.errors.common) {%>
+              <p class="text-danger"><%= locals.errors.common.msg %></p>
+              <% } %>
             </div>
             <button type="submit" class="btn btn-primary w-100">Login</button>
           </form>

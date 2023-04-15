@@ -14,7 +14,7 @@
 
         <div id="setting-view-form" class="col mt-5">
           <div class="card">
-            <div class="card-header text-center">User Setting</div>
+            <div class="card-header text-center">Add User</div>
             <div class="card-body">
               <form id="add-user-form" method="post" action="/user-setting/add-user">
                 <div class="mb-3">
@@ -49,6 +49,38 @@
               </form>
             </div>
           </div>
+
+          <!-- ============================ start user list table ============================ -->
+          <div class="table-container">
+            <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <%
+              if(locals.allUsers){ 
+                allUsers.forEach(user => { %>
+              <tr id="<%= user._id %>">
+                <td class="fw-bolder"><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td> <%= user.role %> </td>
+                <td class="text-end">
+                  <i class="fa-solid fa-trash fa-2xl btn-delete"></i>
+                </td>
+              </tr>
+              <% })} %>
+            </tbody>
+          </table>
+        </div>
+          
+
+          <!-- ============================ end user list table ============================ -->
+
         </div>
         <!-- ======================= end view setting form ========================= -->
       </div>
